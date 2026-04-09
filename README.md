@@ -1,358 +1,145 @@
-\# 🚀 Seguro API RESTful
+# Seguro API RESTful
 
+API desenvolvida em .NET 6 para cálculo e gestão de apólices de seguro.
 
+O objetivo aqui não foi só “fazer funcionar”, mas estruturar a solução de forma organizada, separando bem responsabilidades e mantendo o código simples de entender, evoluir e testar.
 
-\### Clean Architecture com .NET 6
+---
 
+## 📌 Sobre o projeto
 
+A API permite:
 
-API REST desenvolvida em \*\*.NET 6\*\* para cálculo e gestão de apólices de seguro, utilizando princípios de \*\*Clean Architecture\*\*, boas práticas de engenharia de software e foco em organização, testabilidade e escalabilidade.
+* Criar uma apólice de seguro
+* Consultar uma apólice por ID
+* Obter um relatório simples com a média dos valores de seguro
 
+O cálculo do seguro é feito com base no valor do veículo e está isolado na camada de domínio.
 
+---
 
-\---
+## 🏗️ Arquitetura
 
+A solução foi estruturada seguindo Clean Architecture, dividida em:
 
+* **Domain** → regras de negócio e entidades
+* **Application** → casos de uso
+* **Infrastructure** → acesso a dados (EF Core)
+* **API** → controllers e exposição HTTP
+* **Tests** → testes unitários
 
-\## 📌 Visão Geral
+A ideia foi manter:
 
+* regras de negócio desacopladas de framework
+* dependências apontando sempre para dentro
+* código fácil de testar
 
+---
 
-Este projeto foi desenvolvido com o objetivo de demonstrar:
+## 🧩 Modelagem
 
+A entidade principal é:
 
+* **Apolice**
 
-\* 🧠 Organização arquitetural sólida
+E ela é composta por:
 
-\* ⚙️ Separação clara de responsabilidades
+* **Segurado**
+* **Veiculo**
 
-\* 🧪 Facilidade de testes
+Esses dois foram modelados como *Value Objects* (Owned Entities no EF), porque não fazem sentido isoladamente — só existem dentro de uma apólice.
 
-\* 🔄 Manutenibilidade e escalabilidade
+---
 
+## 🧮 Regra de cálculo
 
+A lógica de cálculo foi mantida isolada na camada de domínio:
 
-A aplicação permite:
-
-
-
-\* Criar apólices de seguro
-
-\* Consultar apólices por ID
-
-\* Gerar relatórios (média dos valores de seguro)
-
-
-
-\---
-
-
-
-\## 🏗️ Arquitetura
-
-
-
-O projeto segue o padrão \*\*Clean Architecture\*\*, dividido em camadas bem definidas:
-
-
-
+```id="1r1n6c"
+Premio = ((valor * 5) / (2 * valor)) * valor * 1.03 * 1.05
 ```
 
-Domain         → Entidades e regras de negócio
+Implementação em:
 
-Application    → Casos de uso e orquestração
-
-Infrastructure → Persistência e integrações
-
-API            → Exposição HTTP (Controllers)
-
-Tests          → Testes unitários
-
-```
-
-
-
-\### 🔹 Princípios aplicados
-
-
-
-\* Inversão de dependência
-
-\* Baixo acoplamento
-
-\* Alta coesão
-
-\* Separação de responsabilidades
-
-
-
-\---
-
-
-
-\## 🧩 Domínio
-
-
-
-Entidades principais:
-
-
-
-\* \*\*Apolice\*\* (entidade central)
-
-\* \*\*Segurado\*\* (Value Object)
-
-\* \*\*Veiculo\*\* (Value Object)
-
-
-
-📌 \*Segurado e Veiculo foram modelados como \*\*Owned Entities\*\* no Entity Framework, pois não possuem identidade própria fora do contexto da apólice.\*
-
-
-
-\---
-
-
-
-\## 🧮 Regra de Negócio
-
-
-
-O cálculo do seguro é isolado na camada de domínio:
-
-
-
-```
-
-Premio = ((valor \* 5) / (2 \* valor)) \* valor \* 1.03 \* 1.05
-
-```
-
-
-
-📍 Implementação:
-
-
-
-```
-
+```id="7k3b0s"
 Domain/Services/SeguroCalculator.cs
-
 ```
 
+---
 
+## 🌐 Endpoints
 
-\---
+Criar apólice:
 
-
-
-\## 🌐 Endpoints
-
-
-
-\### ➕ Criar Apólice
-
-
-
-```
-
+```id="g5d1az"
 POST /api/seguros
-
 ```
 
+Buscar por ID:
 
-
-\### 🔍 Buscar por ID
-
-
-
-```
-
+```id="2sd7fr"
 GET /api/seguros/{id}
-
 ```
 
+Relatório (média):
 
-
-\### 📊 Relatório (Média dos Seguros)
-
-
-
-```
-
+```id="3g8ktt"
 GET /api/seguros/relatorio
-
 ```
 
+---
 
+## 🗄️ Persistência
 
-\---
+Foi utilizado:
 
+* Entity Framework Core
+* Banco em memória (InMemory)
 
+A escolha foi intencional para manter o foco no domínio e na arquitetura, sem depender de infraestrutura externa.
 
-\## 🗄️ Persistência
+---
 
+## 🧪 Testes
 
+Foram implementados testes unitários para a regra de cálculo do seguro, garantindo previsibilidade da lógica central.
 
-\* Entity Framework Core
+---
 
-\* Banco de dados \*\*InMemory\*\* (para simplicidade e testes)
+## ▶️ Como rodar
 
-
-
-\---
-
-
-
-\## 🧪 Testes
-
-
-
-Testes unitários implementados para:
-
-
-
-\* ✔️ Cálculo de seguro (camada de domínio)
-
-
-
-Framework utilizado:
-
-
-
-\* xUnit
-
-
-
-\---
-
-
-
-\## ▶️ Como Executar
-
-
-
-\### 📦 Pré-requisitos
-
-
-
-\* .NET 6 SDK
-
-\* Visual Studio 2022 ou VS Code
-
-
-
-\---
-
-
-
-\### ▶️ Rodando a aplicação
-
-
-
-```bash
-
+```bash id="yxt9hb"
 dotnet restore
-
 dotnet build
-
 dotnet run
-
 ```
 
+Swagger disponível em:
 
-
-\---
-
-
-
-\### 📄 Swagger
-
-
-
-Acesse:
-
-
-
-```
-
+```id="6j7p4m"
 https://localhost:{porta}/swagger
-
 ```
 
+---
 
+## 🚀 Próximos passos (se evoluir o projeto)
 
-\---
+* Persistência em SQL Server
+* Validação de dados (ex: CPF)
+* Autenticação
+* Logs estruturados
+* Testes de integração
+* Deploy em cloud
 
+---
 
+## 👨‍💻 Autor
 
-\## 🚀 Possíveis Melhorias
+Fernando H. N. Cecyn
 
+---
 
+## 💬 Observação final
 
-\* ✔️ Validação de CPF
-
-\* ✔️ Persistência em SQL Server
-
-\* ✔️ Autenticação e autorização
-
-\* ✔️ Logging estruturado
-
-\* ✔️ Testes de integração
-
-\* ✔️ Dockerização
-
-\* ✔️ Deploy em Cloud (Azure / AWS)
-
-
-
-\---
-
-
-
-\## 🎯 Objetivo do Projeto
-
-
-
-Este projeto foi desenvolvido para demonstrar:
-
-
-
-\* Arquitetura limpa e organizada
-
-\* Boas práticas em APIs REST com .NET
-
-\* Modelagem de domínio
-
-\* Separação de responsabilidades
-
-\* Qualidade e clareza de código
-
-
-
-\---
-
-
-
-\## 👨‍💻 Autor
-
-
-
-\*\*Fernando H. N. Cecyn\*\*
-
-Software Engineer | Backend | Arquitetura | Automação
-
-
-
-\---
-
-
-
-\## 💬 Considerações Finais
-
-
-
-Mais do que apenas entregar funcionalidade, este projeto busca demonstrar uma abordagem profissional na construção de software, priorizando qualidade, organização e escalabilidade — características essenciais para ambientes corporativos e sistemas críticos.
-
-
-
+Esse projeto foi pensado mais como demonstração de organização e tomada de decisão técnica do que apenas entrega de funcionalidade.
+A ideia foi manter o código simples, legível e fácil de evoluir — como deveria ser em um ambiente real.
