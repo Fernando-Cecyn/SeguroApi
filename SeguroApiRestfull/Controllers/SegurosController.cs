@@ -21,14 +21,16 @@ public class SegurosController : ControllerBase
             Veiculo = new Veiculo
             {
                 Valor = dto.ValorVeiculo,
-                MarcaModelo = dto.MarcaModelo
-            },
+                MarcaModelo =  string.IsNullOrWhiteSpace(dto.MarcaModelo) || string.Equals(dto.MarcaModelo, "string") ? "Place Holder: Mitsubishi 1995 Eclipse GST" : dto.MarcaModelo
+    },
             Segurado = new Segurado
             {
-                Nome = dto.Nome,
-                CPF = dto.CPF,
+                Nome =  string.IsNullOrWhiteSpace(dto.Nome)|| string.Equals(dto.Nome, "string") ? "Place Holder: Brian O'Conner" : dto.Nome,
+                CPF = string.IsNullOrWhiteSpace(dto.CPF) || string.Equals(dto.CPF, "string") ? "Place Holder: 123.456.789-09" : dto.CPF,
                 Idade = dto.Idade
             }
+
+            // Ajustes para permitir falhar graciosamente em caso de valores vazios, Mantendo a rastreabilidade por termos Place Holder
         };
 
         var resultado = await _service.CriarSeguroAsync(seguro);

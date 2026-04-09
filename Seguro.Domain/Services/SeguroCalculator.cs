@@ -7,6 +7,9 @@ public class SeguroCalculator
 
     public decimal Calcular(decimal valorVeiculo)
     {
+
+        if (valorVeiculo == 0) return (0); //Pegar Edge Case de valores Zerado;
+        if (valorVeiculo < 0) valorVeiculo = valorVeiculo * -1; //Pegar Edge Case de valores Negativo;
         var taxaRisco = (((valorVeiculo * 5) / (2 * valorVeiculo)) / 100); ///  (Valor do Veículo * 5) /(2 x Valor do Veículo)  --> Constante 2.5?  // Divisão por 100 para deixar em taxa pct
         var premioRisco = taxaRisco * valorVeiculo; 
         var premioPuro = premioRisco * (1 + MARGEM_SEGURANCA);
