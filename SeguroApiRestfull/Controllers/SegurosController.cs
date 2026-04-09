@@ -27,7 +27,7 @@ public class SegurosController : ControllerBase
             {
                 Nome =  string.IsNullOrWhiteSpace(dto.Nome)|| string.Equals(dto.Nome, "string") ? "Place Holder: Brian O'Conner" : dto.Nome,
                 CPF = string.IsNullOrWhiteSpace(dto.CPF) || string.Equals(dto.CPF, "string") ? "Place Holder: 123.456.789-09" : dto.CPF,
-                Idade = int.Equals(dto.Idade, 0) ? 28 : dto.Idade
+                Idade = dto.Idade
             }
 
             // Ajustes para permitir falhar graciosamente em caso de valores vazios, Mantendo a rastreabilidade por termos Place Holder
