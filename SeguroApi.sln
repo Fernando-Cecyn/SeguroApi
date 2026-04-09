@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeguroApi", "SeguroApiRestfull\SeguroApi.csproj", "{500CDDE3-063C-4D76-AC0F-4F3DECC7DBFF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{456BEEDE-5BD5-4336-A62A-8B314456A11A} = {456BEEDE-5BD5-4336-A62A-8B314456A11A}
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E} = {A15F76A4-04D8-4D27-97D8-2229097A4C9E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguro.Domain", "Seguro.Domain\Seguro.Domain.csproj", "{D166C455-8AB9-4222-A970-F6C70AAC5435}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguro.Application", "Seguro.Application\Seguro.Application.csproj", "{A15F76A4-04D8-4D27-97D8-2229097A4C9E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D166C455-8AB9-4222-A970-F6C70AAC5435} = {D166C455-8AB9-4222-A970-F6C70AAC5435}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguro.Infrastructure", "Seguro.Infrastructure\Seguro.Infrastructure.csproj", "{456BEEDE-5BD5-4336-A62A-8B314456A11A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E} = {A15F76A4-04D8-4D27-97D8-2229097A4C9E}
+		{D166C455-8AB9-4222-A970-F6C70AAC5435} = {D166C455-8AB9-4222-A970-F6C70AAC5435}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguro.Testes", "Seguro.Testes\Seguro.Testes.csproj", "{CD3DF5F0-3437-4755-8AAD-0EC997E5341B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D166C455-8AB9-4222-A970-F6C70AAC5435} = {D166C455-8AB9-4222-A970-F6C70AAC5435}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{500CDDE3-063C-4D76-AC0F-4F3DECC7DBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500CDDE3-063C-4D76-AC0F-4F3DECC7DBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500CDDE3-063C-4D76-AC0F-4F3DECC7DBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500CDDE3-063C-4D76-AC0F-4F3DECC7DBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D166C455-8AB9-4222-A970-F6C70AAC5435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D166C455-8AB9-4222-A970-F6C70AAC5435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D166C455-8AB9-4222-A970-F6C70AAC5435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D166C455-8AB9-4222-A970-F6C70AAC5435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15F76A4-04D8-4D27-97D8-2229097A4C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456BEEDE-5BD5-4336-A62A-8B314456A11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456BEEDE-5BD5-4336-A62A-8B314456A11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456BEEDE-5BD5-4336-A62A-8B314456A11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456BEEDE-5BD5-4336-A62A-8B314456A11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD3DF5F0-3437-4755-8AAD-0EC997E5341B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3DF5F0-3437-4755-8AAD-0EC997E5341B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3DF5F0-3437-4755-8AAD-0EC997E5341B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3DF5F0-3437-4755-8AAD-0EC997E5341B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58C23D22-C46D-4057-A681-980E4CB6936A}
+	EndGlobalSection
+EndGlobal
