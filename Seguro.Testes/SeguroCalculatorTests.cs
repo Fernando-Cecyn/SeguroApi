@@ -12,6 +12,15 @@ public class SeguroCalculatorTests
 
         Assert.Equal(270.37m, resultado);
     }
+    [Fact]
+    public void Deve_Calcular_CorretamenteDecimais()
+    {
+        var calc = new SeguroCalculator();
+
+        var resultado = calc.Calcular(10000.01m);
+
+        Assert.Equal(270.37m, resultado);
+    }
 
     [Fact]
     public void Deve_Calcular_CorretamenteZerado()
