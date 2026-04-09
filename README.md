@@ -2,7 +2,6 @@
 
 API desenvolvida em .NET 6 para cálculo e gestão de apólices de seguro.
 
-O objetivo aqui não foi só “fazer funcionar”, mas estruturar a solução de forma organizada, separando bem responsabilidades e mantendo o código simples de entender, evoluir e testar.
 
 ---
 
